@@ -10,37 +10,20 @@
           ]
         },
         {
-          "container": "VSLanguages",
-          "testCases": [
-            "VSLanguages.Managed.vs_perf_DesignTime_editor_navigate_NavigateTo_cs"
-          ]
-        },
-        {
           "container": "VSPE",
           "testCases": [
-            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
-            "VSPE.OptProfTests.vs_env_npd_open",
-            "VSPE.OptProfTests.vs_ddbvtqa_vbwin",
-            "VSPE.OptProfTests.vs_perf_DesignTime_solution_loadclose_cs_picasso",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_build_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_loadclose_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_asl_cs_scenario",
-            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest",
             "VSPE.OptProfTests.vs_perf_designtime_editor_intellisense_globalcompletionlist_cs",
-            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest"
+            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
+            "VSPE.OptProfTests.vs_ddbvtqa_vbwi",
+            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_asl_cs_scenario"
           ]
         },
         {
-          "container": "WinForms",
+          "container": "DDRIT.RPS.TestDiscovery",
           "testCases": [
-            "WinForms.OptProfTests.winforms_largeform_cs",
-            "WinForms.OptProfTests.winforms_largeform_vb"
-          ]
-        },
-        {
-          "container": "XamlOptProf",
-          "testCases": [
-            "Microsoft.Test.Performance.XamlOptProfCreateTests.WpfCreateProject_DesignerIsolated"
+            "Microsoft.Test.Performance.DDPerf.TestDiscovery_DDRIT.TestDiscovery"
           ]
         }
       ]
@@ -52,15 +35,6 @@
           "container": "DDRIT.RPS.CSharp",
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
-          ]
-        },
-        {
-          "container": "TeamEng",
-          "testCases": [
-            "TeamEng.OptProfTest.vs_debugger_interop_managedclient",
-            "TeamEng.OptProfTest.vs_debugger_remote_cslaunch",
-            "TeamEng.OptProfTest.vs_debugger_EE_Managed_CSLambda",
-            "TeamEng.OptProfTest.vs_debugger_start_no_build_cs_scribble"
           ]
         }
       ]
@@ -75,10 +49,9 @@
           ]
         },
         {
-          "container": "MSBuild",
+          "container": "DDRIT.RPS.TestDiscovery",
           "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
+            "Microsoft.Test.Performance.DDPerf.TestDiscovery_DDRIT.TestDiscovery"
           ]
         }
       ]
@@ -93,37 +66,14 @@
           ]
         },
         {
-          "container": "VSLanguages",
-          "testCases": [
-            "VSLanguages.Managed.vs_perf_DesignTime_editor_navigate_NavigateTo_cs"
-          ]
-        },
-        {
           "container": "VSPE",
           "testCases": [
-            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
-            "VSPE.OptProfTests.vs_env_npd_open",
-            "VSPE.OptProfTests.vs_ddbvtqa_vbwin",
-            "VSPE.OptProfTests.vs_perf_DesignTime_solution_loadclose_cs_picasso",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_build_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_loadclose_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_asl_cs_scenario",
-            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest",
             "VSPE.OptProfTests.vs_perf_designtime_editor_intellisense_globalcompletionlist_cs",
-            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest"
-          ]
-        },
-        {
-          "container": "WinForms",
-          "testCases": [
-            "WinForms.OptProfTests.winforms_largeform_cs",
-            "WinForms.OptProfTests.winforms_largeform_vb"
-          ]
-        },
-        {
-          "container": "XamlOptProf",
-          "testCases": [
-            "Microsoft.Test.Performance.XamlOptProfCreateTests.WpfCreateProject_DesignerIsolated"
+            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
+            "VSPE.OptProfTests.vs_ddbvtqa_vbwi",
+            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_asl_cs_scenario"
           ]
         }
       ]
@@ -148,23 +98,18 @@
         {
           "container": "VSPE",
           "testCases": [
-            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
-            "VSPE.OptProfTests.vs_ddbvtqa_vbwin",
-            "VSPE.OptProfTests.vs_perf_DesignTime_solution_loadclose_cs_picasso",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_build_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_loadclose_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_asl_cs_scenario",
-            "VSPE.OptProfTests.vs_asl_vb_scenario",
-            "VSPE.OptProfTests.vs_perf_designtime_editor_open_text_largetxtemptyide",
+            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest",
             "VSPE.OptProfTests.vs_perf_designtime_editor_intellisense_globalcompletionlist_cs",
-            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest"
+            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
+            "VSPE.OptProfTests.vs_ddbvtqa_vbwi",
+            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_asl_cs_scenario"
           ]
         },
         {
-          "container": "MSBuild",
+          "container": "DDRIT.RPS.TestDiscovery",
           "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
+            "Microsoft.Test.Performance.DDPerf.TestDiscovery_DDRIT.TestDiscovery"
           ]
         }
       ]
@@ -187,23 +132,18 @@
         {
           "container": "VSPE",
           "testCases": [
-            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
-            "VSPE.OptProfTests.vs_ddbvtqa_vbwin",
-            "VSPE.OptProfTests.vs_perf_DesignTime_solution_loadclose_cs_picasso",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_build_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_perf_designtime_solution_loadclose_vb_australiangovernment",
-            "VSPE.OptProfTests.vs_asl_cs_scenario",
-            "VSPE.OptProfTests.vs_asl_vb_scenario",
-            "VSPE.OptProfTests.vs_perf_designtime_editor_open_text_largetxtemptyide",
+            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest",
             "VSPE.OptProfTests.vs_perf_designtime_editor_intellisense_globalcompletionlist_cs",
-            "VSPE.OptProfTests.vs_perf_designtime_ide_searchtest"
+            "VSPE.OptProfTests.vs_env_solution_createnewproject_vb_winformsapp",
+            "VSPE.OptProfTests.vs_ddbvtqa_vbwi",
+            "VSPE.OptProfTests.vs_asl_vb_scenario",
+            "VSPE.OptProfTests.vs_asl_cs_scenario"
           ]
         },
         {
-          "container": "MSBuild",
+          "container": "DDRIT.RPS.TestDiscovery",
           "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
+            "Microsoft.Test.Performance.DDPerf.TestDiscovery_DDRIT.TestDiscovery"
           ]
         }
       ]
@@ -222,13 +162,6 @@
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
           ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
-          ]
         }
       ]
     },
@@ -245,13 +178,6 @@
           "container": "DDRIT.RPS.CSharp",
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
-          ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
           ]
         }
       ]
@@ -270,13 +196,6 @@
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
           ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
-          ]
         }
       ]
     },
@@ -293,13 +212,6 @@
           "container": "DDRIT.RPS.CSharp",
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
-          ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
           ]
         }
       ]
@@ -318,13 +230,6 @@
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
           ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
-          ]
         }
       ]
     },
@@ -341,13 +246,6 @@
           "container": "DDRIT.RPS.CSharp",
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
-          ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
           ]
         }
       ]
@@ -366,13 +264,6 @@
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
           ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
-          ]
         }
       ]
     },
@@ -390,13 +281,6 @@
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
           ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
-          ]
         }
       ]
     },
@@ -413,13 +297,6 @@
           "container": "DDRIT.RPS.CSharp",
           "testCases": [
             "DDRIT.RPS.CSharp.CSharpTest.EditingAndDesigner"
-          ]
-        },
-        {
-          "container": "MSBuild",
-          "testCases": [
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild",
-            "MSBuild.Managed.vs_perf_designtime_commandline_msbuild_cs_mstv_fullbuild_4proc"
           ]
         }
       ]

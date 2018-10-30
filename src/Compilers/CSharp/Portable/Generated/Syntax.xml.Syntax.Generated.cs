@@ -14902,6 +14902,65 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     }
   }
 
+  /// <summary>Number constraint syntax.</summary>
+  public sealed partial class NumberConstraintSyntax : TypeParameterConstraintSyntax
+  {
+    internal NumberConstraintSyntax(Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.CSharpSyntaxNode green, SyntaxNode parent, int position)
+        : base(green, parent, position)
+    {
+    }
+
+    /// <summary>Gets the "number" keyword.</summary>
+    public SyntaxToken NumberKeyword 
+    {
+      get { return new SyntaxToken(this, ((Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.NumberConstraintSyntax)this.Green).numberKeyword, this.Position, 0); }
+    }
+
+    internal override SyntaxNode GetNodeSlot(int index)
+    {
+        switch (index)
+        {
+            default: return null;
+        }
+    }
+    internal override SyntaxNode GetCachedSlot(int index)
+    {
+        switch (index)
+        {
+            default: return null;
+        }
+    }
+
+    public override TResult Accept<TResult>(CSharpSyntaxVisitor<TResult> visitor)
+    {
+        return visitor.VisitNumberConstraint(this);
+    }
+
+    public override void Accept(CSharpSyntaxVisitor visitor)
+    {
+        visitor.VisitNumberConstraint(this);
+    }
+
+    public NumberConstraintSyntax Update(SyntaxToken numberKeyword)
+    {
+        if (numberKeyword != this.NumberKeyword)
+        {
+            var newNode = SyntaxFactory.NumberConstraint(numberKeyword);
+            var annotations = this.GetAnnotations();
+            if (annotations != null && annotations.Length > 0)
+               return newNode.WithAnnotations(annotations);
+            return newNode;
+        }
+
+        return this;
+    }
+
+    public NumberConstraintSyntax WithNumberKeyword(SyntaxToken numberKeyword)
+    {
+        return this.Update(numberKeyword);
+    }
+  }
+
   public abstract partial class BaseFieldDeclarationSyntax : MemberDeclarationSyntax
   {
     internal BaseFieldDeclarationSyntax(Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.CSharpSyntaxNode green, SyntaxNode parent, int position)

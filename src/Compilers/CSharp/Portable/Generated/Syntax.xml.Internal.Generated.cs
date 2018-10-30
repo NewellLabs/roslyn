@@ -23349,6 +23349,116 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
     }
   }
 
+  /// <summary>Number constraint syntax.</summary>
+  internal sealed partial class NumberConstraintSyntax : TypeParameterConstraintSyntax
+  {
+    internal readonly SyntaxToken numberKeyword;
+
+    internal NumberConstraintSyntax(SyntaxKind kind, SyntaxToken numberKeyword, DiagnosticInfo[] diagnostics, SyntaxAnnotation[] annotations)
+        : base(kind, diagnostics, annotations)
+    {
+        this.SlotCount = 1;
+        this.AdjustFlagsAndWidth(numberKeyword);
+        this.numberKeyword = numberKeyword;
+    }
+
+
+    internal NumberConstraintSyntax(SyntaxKind kind, SyntaxToken numberKeyword, SyntaxFactoryContext context)
+        : base(kind)
+    {
+        this.SetFactoryContext(context);
+        this.SlotCount = 1;
+        this.AdjustFlagsAndWidth(numberKeyword);
+        this.numberKeyword = numberKeyword;
+    }
+
+
+    internal NumberConstraintSyntax(SyntaxKind kind, SyntaxToken numberKeyword)
+        : base(kind)
+    {
+        this.SlotCount = 1;
+        this.AdjustFlagsAndWidth(numberKeyword);
+        this.numberKeyword = numberKeyword;
+    }
+
+    /// <summary>Gets the "number" keyword.</summary>
+    public SyntaxToken NumberKeyword { get { return this.numberKeyword; } }
+
+    internal override GreenNode GetSlot(int index)
+    {
+        switch (index)
+        {
+            case 0: return this.numberKeyword;
+            default: return null;
+        }
+    }
+
+    internal override SyntaxNode CreateRed(SyntaxNode parent, int position)
+    {
+      return new CSharp.Syntax.NumberConstraintSyntax(this, parent, position);
+    }
+
+    public override TResult Accept<TResult>(CSharpSyntaxVisitor<TResult> visitor)
+    {
+        return visitor.VisitNumberConstraint(this);
+    }
+
+    public override void Accept(CSharpSyntaxVisitor visitor)
+    {
+        visitor.VisitNumberConstraint(this);
+    }
+
+    public NumberConstraintSyntax Update(SyntaxToken numberKeyword)
+    {
+        if (numberKeyword != this.NumberKeyword)
+        {
+            var newNode = SyntaxFactory.NumberConstraint(numberKeyword);
+            var diags = this.GetDiagnostics();
+            if (diags != null && diags.Length > 0)
+               newNode = newNode.WithDiagnosticsGreen(diags);
+            var annotations = this.GetAnnotations();
+            if (annotations != null && annotations.Length > 0)
+               newNode = newNode.WithAnnotationsGreen(annotations);
+            return newNode;
+        }
+
+        return this;
+    }
+
+    internal override GreenNode SetDiagnostics(DiagnosticInfo[] diagnostics)
+    {
+         return new NumberConstraintSyntax(this.Kind, this.numberKeyword, diagnostics, GetAnnotations());
+    }
+
+    internal override GreenNode SetAnnotations(SyntaxAnnotation[] annotations)
+    {
+         return new NumberConstraintSyntax(this.Kind, this.numberKeyword, GetDiagnostics(), annotations);
+    }
+
+    internal NumberConstraintSyntax(ObjectReader reader)
+        : base(reader)
+    {
+      this.SlotCount = 1;
+      var numberKeyword = (SyntaxToken)reader.ReadValue();
+      if (numberKeyword != null)
+      {
+         AdjustFlagsAndWidth(numberKeyword);
+         this.numberKeyword = numberKeyword;
+      }
+    }
+
+    internal override void WriteTo(ObjectWriter writer)
+    {
+      base.WriteTo(writer);
+      writer.WriteValue(this.numberKeyword);
+    }
+
+    static NumberConstraintSyntax()
+    {
+       ObjectBinder.RegisterTypeReader(typeof(NumberConstraintSyntax), r => new NumberConstraintSyntax(r));
+    }
+  }
+
   internal abstract partial class BaseFieldDeclarationSyntax : MemberDeclarationSyntax
   {
     internal BaseFieldDeclarationSyntax(SyntaxKind kind, DiagnosticInfo[] diagnostics, SyntaxAnnotation[] annotations)
@@ -34984,6 +35094,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
       return this.DefaultVisit(node);
     }
 
+    public virtual TResult VisitNumberConstraint(NumberConstraintSyntax node)
+    {
+      return this.DefaultVisit(node);
+    }
+
     public virtual TResult VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
       return this.DefaultVisit(node);
@@ -36019,6 +36134,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
     }
 
     public virtual void VisitTypeConstraint(TypeConstraintSyntax node)
+    {
+      this.DefaultVisit(node);
+    }
+
+    public virtual void VisitNumberConstraint(NumberConstraintSyntax node)
     {
       this.DefaultVisit(node);
     }
@@ -37555,6 +37675,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
     {
       var type = (TypeSyntax)this.Visit(node.Type);
       return node.Update(type);
+    }
+
+    public override CSharpSyntaxNode VisitNumberConstraint(NumberConstraintSyntax node)
+    {
+      var numberKeyword = (SyntaxToken)this.Visit(node.NumberKeyword);
+      return node.Update(numberKeyword);
     }
 
     public override CSharpSyntaxNode VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -43079,6 +43205,33 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
       if (cached != null) return (TypeConstraintSyntax)cached;
 
       var result = new TypeConstraintSyntax(SyntaxKind.TypeConstraint, type, this.context);
+      if (hash >= 0)
+      {
+          SyntaxNodeCache.AddNode(result, hash);
+      }
+
+      return result;
+    }
+
+    public NumberConstraintSyntax NumberConstraint(SyntaxToken numberKeyword)
+    {
+#if DEBUG
+      if (numberKeyword == null)
+        throw new ArgumentNullException(nameof(numberKeyword));
+      switch (numberKeyword.Kind)
+      {
+        case SyntaxKind.NumberKeyword:
+          break;
+        default:
+          throw new ArgumentException("numberKeyword");
+      }
+#endif
+
+      int hash;
+      var cached = CSharpSyntaxNodeCache.TryGetNode((int)SyntaxKind.NumberConstraint, numberKeyword, this.context, out hash);
+      if (cached != null) return (NumberConstraintSyntax)cached;
+
+      var result = new NumberConstraintSyntax(SyntaxKind.NumberConstraint, numberKeyword, this.context);
       if (hash >= 0)
       {
           SyntaxNodeCache.AddNode(result, hash);
@@ -50173,6 +50326,33 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
       return result;
     }
 
+    public static NumberConstraintSyntax NumberConstraint(SyntaxToken numberKeyword)
+    {
+#if DEBUG
+      if (numberKeyword == null)
+        throw new ArgumentNullException(nameof(numberKeyword));
+      switch (numberKeyword.Kind)
+      {
+        case SyntaxKind.NumberKeyword:
+          break;
+        default:
+          throw new ArgumentException("numberKeyword");
+      }
+#endif
+
+      int hash;
+      var cached = SyntaxNodeCache.TryGetNode((int)SyntaxKind.NumberConstraint, numberKeyword, out hash);
+      if (cached != null) return (NumberConstraintSyntax)cached;
+
+      var result = new NumberConstraintSyntax(SyntaxKind.NumberConstraint, numberKeyword);
+      if (hash >= 0)
+      {
+          SyntaxNodeCache.AddNode(result, hash);
+      }
+
+      return result;
+    }
+
     public static FieldDeclarationSyntax FieldDeclaration(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<AttributeListSyntax> attributeLists, Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<SyntaxToken> modifiers, VariableDeclarationSyntax declaration, SyntaxToken semicolonToken)
     {
 #if DEBUG
@@ -52439,6 +52619,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
            typeof(ConstructorConstraintSyntax),
            typeof(ClassOrStructConstraintSyntax),
            typeof(TypeConstraintSyntax),
+           typeof(NumberConstraintSyntax),
            typeof(FieldDeclarationSyntax),
            typeof(EventFieldDeclarationSyntax),
            typeof(ExplicitInterfaceSpecifierSyntax),

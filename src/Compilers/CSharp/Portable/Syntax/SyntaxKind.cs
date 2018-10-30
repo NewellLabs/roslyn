@@ -575,5 +575,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         ImplicitStackAllocArrayCreationExpression = 9053,
         SuppressNullableWarningExpression = 9054,
         NullableDirectiveTrivia = 9055,
+
+        // number constraints
+        NumberConstraint = 9066,
+        NumberKeyword = 9067
     }
 }

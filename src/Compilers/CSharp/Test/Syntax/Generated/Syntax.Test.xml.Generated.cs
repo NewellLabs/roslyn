@@ -739,6 +739,11 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             return Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.TypeConstraint(GenerateIdentifierName());
         }
         
+        private static Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.NumberConstraintSyntax GenerateNumberConstraint()
+        {
+            return Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.NumberConstraint(Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.Token(SyntaxKind.NumberKeyword));
+        }
+        
         private static Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.FieldDeclarationSyntax GenerateFieldDeclaration()
         {
             return Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.FieldDeclaration(new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.AttributeListSyntax>(), new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxToken>(), GenerateVariableDeclaration(), Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.Token(SyntaxKind.SemicolonToken));
@@ -2852,6 +2857,16 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var node = GenerateTypeConstraint();
             
             Assert.NotNull(node.Type);
+            
+            AttachAndCheckDiagnostics(node);
+        }
+        
+        [Fact]
+        public void TestNumberConstraintFactoryAndProperties()
+        {
+            var node = GenerateNumberConstraint();
+            
+            Assert.Equal(SyntaxKind.NumberKeyword, node.NumberKeyword.Kind);
             
             AttachAndCheckDiagnostics(node);
         }
@@ -7476,6 +7491,32 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         }
         
         [Fact]
+        public void TestNumberConstraintTokenDeleteRewriter()
+        {
+            var oldNode = GenerateNumberConstraint();
+            var rewriter = new TokenDeleteRewriter();
+            var newNode = rewriter.Visit(oldNode);
+            
+            if(!oldNode.IsMissing)
+            {
+                Assert.NotEqual(oldNode, newNode);
+            }
+            
+            Assert.NotNull(newNode);
+            Assert.True(newNode.IsMissing, "No tokens => missing");
+        }
+        
+        [Fact]
+        public void TestNumberConstraintIdentityRewriter()
+        {
+            var oldNode = GenerateNumberConstraint();
+            var rewriter = new IdentityRewriter();
+            var newNode = rewriter.Visit(oldNode);
+            
+            Assert.Same(oldNode, newNode);
+        }
+        
+        [Fact]
         public void TestFieldDeclarationTokenDeleteRewriter()
         {
             var oldNode = GenerateFieldDeclaration();
@@ -9796,6 +9837,11 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             return SyntaxFactory.TypeConstraint(GenerateIdentifierName());
         }
         
+        private static NumberConstraintSyntax GenerateNumberConstraint()
+        {
+            return SyntaxFactory.NumberConstraint(SyntaxFactory.Token(SyntaxKind.NumberKeyword));
+        }
+        
         private static FieldDeclarationSyntax GenerateFieldDeclaration()
         {
             return SyntaxFactory.FieldDeclaration(new SyntaxList<AttributeListSyntax>(), new SyntaxTokenList(), GenerateVariableDeclaration(), SyntaxFactory.Token(SyntaxKind.SemicolonToken));
@@ -11910,6 +11956,16 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             
             Assert.NotNull(node.Type);
             var newNode = node.WithType(node.Type);
+            Assert.Equal(node, newNode);
+        }
+        
+        [Fact]
+        public void TestNumberConstraintFactoryAndProperties()
+        {
+            var node = GenerateNumberConstraint();
+            
+            Assert.Equal(SyntaxKind.NumberKeyword, node.NumberKeyword.Kind());
+            var newNode = node.WithNumberKeyword(node.NumberKeyword);
             Assert.Equal(node, newNode);
         }
         
@@ -16526,6 +16582,32 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         public void TestTypeConstraintIdentityRewriter()
         {
             var oldNode = GenerateTypeConstraint();
+            var rewriter = new IdentityRewriter();
+            var newNode = rewriter.Visit(oldNode);
+            
+            Assert.Same(oldNode, newNode);
+        }
+        
+        [Fact]
+        public void TestNumberConstraintTokenDeleteRewriter()
+        {
+            var oldNode = GenerateNumberConstraint();
+            var rewriter = new TokenDeleteRewriter();
+            var newNode = rewriter.Visit(oldNode);
+            
+            if(!oldNode.IsMissing)
+            {
+                Assert.NotEqual(oldNode, newNode);
+            }
+            
+            Assert.NotNull(newNode);
+            Assert.True(newNode.IsMissing, "No tokens => missing");
+        }
+        
+        [Fact]
+        public void TestNumberConstraintIdentityRewriter()
+        {
+            var oldNode = GenerateNumberConstraint();
             var rewriter = new IdentityRewriter();
             var newNode = rewriter.Visit(oldNode);
             

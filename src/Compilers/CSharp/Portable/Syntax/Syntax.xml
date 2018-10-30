@@ -3205,6 +3205,18 @@
       </PropertyComment>
     </Field>
   </Node>
+  <Node Name="NumberConstraintSyntax" Base="TypeParameterConstraintSyntax">
+      <TypeComment>
+          <summary>Number constraint syntax.</summary>
+      </TypeComment>
+      <Kind Name="NumberConstraint"/>
+      <Field Name="NumberKeyword" Type="SyntaxToken">
+          <PropertyComment>
+              <summary>Gets the "number" keyword.</summary>
+          </PropertyComment>
+          <Kind Name="NumberKeyword"/>
+      </Field>
+  </Node>
   <AbstractNode Name="BaseFieldDeclarationSyntax" Base="MemberDeclarationSyntax">
     <Field Name="AttributeLists" Type="SyntaxList&lt;AttributeListSyntax&gt;">
       <PropertyComment>

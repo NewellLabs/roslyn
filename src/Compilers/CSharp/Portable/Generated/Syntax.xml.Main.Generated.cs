@@ -892,6 +892,12 @@ namespace Microsoft.CodeAnalysis.CSharp
       return this.DefaultVisit(node);
     }
 
+    /// <summary>Called when the visitor visits a NumberConstraintSyntax node.</summary>
+    public virtual TResult VisitNumberConstraint(NumberConstraintSyntax node)
+    {
+      return this.DefaultVisit(node);
+    }
+
     /// <summary>Called when the visitor visits a FieldDeclarationSyntax node.</summary>
     public virtual TResult VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
@@ -2133,6 +2139,12 @@ namespace Microsoft.CodeAnalysis.CSharp
 
     /// <summary>Called when the visitor visits a TypeConstraintSyntax node.</summary>
     public virtual void VisitTypeConstraint(TypeConstraintSyntax node)
+    {
+      this.DefaultVisit(node);
+    }
+
+    /// <summary>Called when the visitor visits a NumberConstraintSyntax node.</summary>
+    public virtual void VisitNumberConstraint(NumberConstraintSyntax node)
     {
       this.DefaultVisit(node);
     }
@@ -3730,6 +3742,12 @@ namespace Microsoft.CodeAnalysis.CSharp
     {
       var type = (TypeSyntax)this.Visit(node.Type);
       return node.Update(type);
+    }
+
+    public override SyntaxNode VisitNumberConstraint(NumberConstraintSyntax node)
+    {
+      var numberKeyword = this.VisitToken(node.NumberKeyword);
+      return node.Update(numberKeyword);
     }
 
     public override SyntaxNode VisitFieldDeclaration(FieldDeclarationSyntax node)
@@ -8974,6 +8992,26 @@ namespace Microsoft.CodeAnalysis.CSharp
       return (TypeConstraintSyntax)Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.TypeConstraint(type == null ? null : (Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.TypeSyntax)type.Green).CreateRed();
     }
 
+
+    /// <summary>Creates a new NumberConstraintSyntax instance.</summary>
+    public static NumberConstraintSyntax NumberConstraint(SyntaxToken numberKeyword)
+    {
+      switch (numberKeyword.Kind())
+      {
+        case SyntaxKind.NumberKeyword:
+          break;
+        default:
+          throw new ArgumentException("numberKeyword");
+      }
+      return (NumberConstraintSyntax)Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxFactory.NumberConstraint((Syntax.InternalSyntax.SyntaxToken)numberKeyword.Node).CreateRed();
+    }
+
+
+    /// <summary>Creates a new NumberConstraintSyntax instance.</summary>
+    public static NumberConstraintSyntax NumberConstraint()
+    {
+      return SyntaxFactory.NumberConstraint(SyntaxFactory.Token(SyntaxKind.NumberKeyword));
+    }
 
     /// <summary>Creates a new FieldDeclarationSyntax instance.</summary>
     public static FieldDeclarationSyntax FieldDeclaration(SyntaxList<AttributeListSyntax> attributeLists, SyntaxTokenList modifiers, VariableDeclarationSyntax declaration, SyntaxToken semicolonToken)
